@@ -1,0 +1,67 @@
+# Brian Kimonge Dison – Personal Portfolio
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) 
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS) 
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+A modern, responsive **personal portfolio website** showcasing ICT & industrial skills, projects, and contact information. Built with **HTML**, **CSS**, and **JavaScript**, it features **dark mode**, smooth scrolling, animated skill bars, and mobile-friendly navigation.
+
+## 🌟 Features
+
+- **Responsive Design:** Works on mobile, tablet, and desktop.
+- **Dark Mode Toggle:** Switch between light and dark themes; preference is saved in `localStorage`.
+- **Smooth Scrolling & Animations:** Sections fade in on scroll; progress bars animate dynamically.
+- **Interactive Navigation:** Hamburger menu for mobile devices.
+- **Projects Showcase:** Display projects with hover effects and clickable links.
+- **Skills Section:** Animated progress bars with percentages for ICT and industrial skills.
+- **Contact Section:** Profile photo and embedded contact form.
+- **Hero Section:** Eye-catching banner with introduction and "Hire Me" button.
+- **Footer:** Organized footer with contact info and social media links.
+
+## 📂 Project Structure
+
+portfolio-website/
+│
+├── index.html # Main HTML file
+├── style.css # CSS styles including dark mode
+├── script.js # JavaScript for menu, dark mode, animations
+├── images/ # Logo, profile photos, and other media
+│ ├── logo.jpg
+│ ├── profile.jpg
+│ └── Brian.jpg
+├── icons/ # Icons for projects
+│ ├── cv.png
+│ ├── login.png
+│ └── dashboard.png
+├── PDFs/ # CVs
+│ ├── Brian_Dison_Clerical_CV_Jan_2026.pdf
+│ └── Brian_Kimonge_Dison_ICT_CV_2026.pdf
+└── README.md # Project documentation (this file)
+
+✨ Author
+
+Brian Kimonge Dison
+
+📧 Email: briankimonge2@gmail.com
+
+📞 Phone: 079567140 / 0742303266
+
+🌐 GitHub: https://github.com/kimonge
+
+🔗 LinkedIn: https://linkedin.com/in/brian-kimonge-dison
+
+📺 YouTube: https://youtube.com/@briankimonge7258
+
+🟦 X (Twitter): https://x.com/BrianKimonge
+
+📘 Facebook: https://facebook.com/reborn.kimonge
+
+🎨 Acknowledgements
+
+Google Fonts – Poppins
+
+Icons sourced from local icons/ folder
+
+Inspiration from modern portfolio templates and clean UI practices
+
+Built with ❤️ by Brian Kimonge Dison
