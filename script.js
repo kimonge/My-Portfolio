@@ -1,65 +1,110 @@
-// -------------------- Mobile Menu --------------------
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('nav');
+// ==================== DOM Ready ====================
+document.addEventListener("DOMContentLoaded", () => {
 
-// Toggle menu
-menuToggle.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
+  // -------------------- Mobile Menu --------------------
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("nav");
+  const navLinks = nav ? nav.querySelectorAll("a") : [];
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
 
-// Close menu when a link is clicked
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('active');
-  });
-});
+  const isMobile = () => window.innerWidth <= 768;
 
-// -------------------- Dark Mode with localStorage --------------------
-const darkModeToggle = document.getElementById('dark-mode-toggle');
+  if (menuToggle && nav) {
+    const closeNav = () => {
+      nav.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.style.display = "block"; // show hamburger again
+    };
 
-// Load dark mode preference
-if (localStorage.getItem('darkMode') === 'enabled') {
-  document.body.classList.add('dark-mode');
-}
+    const openNav = () => {
+      nav.classList.add("active");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.style.display = "none"; // hide hamburger
+    };
 
-// Toggle dark mode
-darkModeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
+    // Toggle nav on hamburger click
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (nav.classList.contains("active")) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
 
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('darkMode', 'enabled');
-  } else {
-    localStorage.setItem('darkMode', 'disabled');
+    // Close nav when a nav link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        if (isMobile()) closeNav();
+      });
+    });
+
+    // Close nav when clicking outside
+    document.addEventListener("click", (e) => {
+      if (isMobile() && nav.classList.contains("active") && !nav.contains(e.target) && e.target !== menuToggle) {
+        closeNav();
+      }
+    });
+
+    // Close nav with ESC key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("active")) {
+        closeNav();
+      }
+    });
   }
-});
 
-// -------------------- Animate Progress Bars on Scroll --------------------
-const progressBars = document.querySelectorAll('.progress-bar');
+  // -------------------- Dark Mode --------------------
+  const setDarkModeIcon = () => {
+    if (!darkModeToggle) return;
+    darkModeToggle.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+  };
 
-function animateProgress() {
-  progressBars.forEach(bar => {
-    const rect = bar.getBoundingClientRect();
-    const target = parseInt(bar.dataset.progress);
+  // Load saved preference
+  const savedMode = localStorage.getItem("darkMode");
 
-    // Check if bar is visible and not animated yet
-    if (rect.top < window.innerHeight - 50 && !bar.dataset.animated) {
-      bar.dataset.animated = true;
-      let width = 0;
+  if (savedMode === "enabled") {
+    document.body.classList.add("dark-mode");
+  } else if (!savedMode && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("dark-mode");
+  }
 
-      const interval = setInterval(() => {
-        if (width >= target) {
-          clearInterval(interval);
-        } else {
-          width++;
-          bar.style.width = width + '%';
-          bar.textContent = width + '%';
-          bar.setAttribute('aria-valuenow', width);
+  setDarkModeIcon();
+
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      document.body.classList.toggle("dark-mode");
+
+      localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark-mode") ? "enabled" : "disabled"
+      );
+
+      setDarkModeIcon();
+    });
+  }
+
+  // -------------------- Animate Progress Bars --------------------
+  const progressBars = document.querySelectorAll(".progress-bar");
+
+  if ("IntersectionObserver" in window && progressBars.length) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const target = bar.dataset.progress;
+
+          bar.style.width = target + "%";
+          bar.textContent = target + "%";
+          bar.setAttribute("aria-valuenow", target);
+
+          observer.unobserve(bar);
         }
-      }, 15);
-    }
-  });
-}
+      });
+    }, { threshold: 0.5 });
 
-// Animate bars on scroll and page load
-window.addEventListener('scroll', animateProgress);
-window.addEventListener('load', animateProgress);
+    progressBars.forEach(bar => observer.observe(bar));
+  }
+
+});

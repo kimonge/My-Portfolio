@@ -1,4 +1,4 @@
-/* -------------------- Global -------------------- */
+/* ===================== Global ===================== */
 html {
   scroll-behavior: smooth;
 }
@@ -21,7 +21,7 @@ img {
   display: block;
 }
 
-/* -------------------- Header -------------------- */
+/* ===================== Header ===================== */
 .header-wrapper {
   position: fixed;
   top: 0;
@@ -61,24 +61,27 @@ img {
   font-weight: 400;
 }
 
-/* -------------------- Navigation -------------------- */
+/* ===================== Navigation ===================== */
 nav {
   display: flex;
   gap: 15px;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
+  align-items: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-nav a {
+nav a,
+nav button {
   color: #fff;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-nav a:hover {
-  text-decoration: underline;
+nav a:hover,
+nav button:hover {
+  color: #22c55e;
 }
 
-/* -------------------- Hamburger Menu -------------------- */
+/* ===================== Hamburger Menu ===================== */
 .menu-toggle {
   display: none;
   background: none;
@@ -93,7 +96,7 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-/* -------------------- Hero -------------------- */
+/* ===================== Hero ===================== */
 #hero {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: #fff;
@@ -126,7 +129,7 @@ nav a:hover {
   color: #1e3a8a;
 }
 
-/* -------------------- Content Wrapper -------------------- */
+/* ===================== Content Wrapper ===================== */
 .content-wrapper {
   padding: 20px;
   padding-top: 140px;
@@ -146,30 +149,31 @@ section h2 {
   margin-bottom: 15px;
 }
 
-/* -------------------- About Section -------------------- */
-.about-content {
+/* ===================== About Section ===================== */
+.about-text-wrapper {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .profile-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  float: left;
+  margin-right: 20px;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
   object-fit: cover;
-  border: 3px solid #2196F3;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  flex-shrink: 0;
 }
 
-.about-text {
+.about-text-wrapper .about-text {
   flex: 1;
+  min-width: 250px;
   font-size: 0.95rem;
   line-height: 1.6;
 }
 
-/* -------------------- Skills Section -------------------- */
+/* ===================== Skills Section ===================== */
 .skill-list {
   list-style: none;
   padding: 0;
@@ -209,7 +213,7 @@ section h2 {
   background: #f59e0b;
 }
 
-/* -------------------- Projects Section -------------------- */
+/* ===================== Projects Section ===================== */
 .projects-container {
   display: flex;
   flex-wrap: wrap;
@@ -263,42 +267,12 @@ section h2 {
   background: #0056b3;
 }
 
-/* -------------------- Contact Section -------------------- */
-.contact-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-.contact-photo {
-  flex: 0 0 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* ===================== Contact Section ===================== */
 .contact-form {
-  flex: 1 1 500px;
+  flex: 1 1 100%;
 }
 
-.profile-contact-photo {
-  width: 100%;
-  max-width: 300px;
-  height: 550px;
-  border-radius: 8px;
-  object-fit: cover;
-  border: 10px solid #e9ecee;
-  box-shadow: 0 4px 8px rgba(235, 232, 232, 0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.profile-contact-photo:hover {
-  transform: scale(1.01);
-  box-shadow: 0 8px 16px rgba(238, 230, 230, 0.3), 0 0 12px rgba(210, 212, 214, 0.5);
-}
-
-/* -------------------- Footer -------------------- */
+/* ===================== Footer ===================== */
 footer {
   background: #111827;
   color: #e5e7eb;
@@ -330,7 +304,6 @@ footer .footer-section {
 
 footer .footer-section strong {
   font-size: 1rem;
-  display: block;
   color: #f4f4f4;
 }
 
@@ -350,45 +323,7 @@ footer .footer-section a:hover {
   color: #22c55e;
 }
 
-/* -------------------- Responsive -------------------- */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  nav {
-    flex-direction: column;
-    gap: 10px;
-    background: #0056b3;
-    border-radius: 8px;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    padding: 0;
-  }
-
-  nav.active {
-    max-height: 300px;
-    opacity: 1;
-    padding: 10px;
-  }
-
-  .about-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .profile-photo {
-    margin-bottom: 20px;
-  }
-
-  .contact-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-/* -------------------- Dark Mode -------------------- */
+/* ===================== Dark Mode ===================== */
 body.dark-mode {
   background: #111827;
   color: #e5e7eb;
@@ -398,11 +333,13 @@ body.dark-mode header {
   background: linear-gradient(90deg, #1e40af, #1e3a8a);
 }
 
-body.dark-mode nav a {
+body.dark-mode nav a,
+body.dark-mode nav button {
   color: #e5e7eb;
 }
 
-body.dark-mode nav a:hover {
+body.dark-mode nav a:hover,
+body.dark-mode nav button:hover {
   color: #22c55e;
 }
 
@@ -457,4 +394,53 @@ body.dark-mode .btn-primary {
 
 body.dark-mode .btn-primary:hover {
   background: #cbd5e1;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+    background: #0056b3;
+    border-radius: 8px;
+    position: fixed;
+    top: 80px;
+    right: -250px;
+    width: 220px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateX(0);
+    transition: right 0.3s ease;
+    z-index: 9999;
+  }
+
+  nav.active {
+    right: 0;
+  }
+
+  .about-text-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .about-text-wrapper .profile-photo {
+    float: none;
+    margin: 0;
+    width: 150px;
+  }
+
+  .about-text-wrapper .about-text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-form {
+    width: 100%;
+  }
 }
