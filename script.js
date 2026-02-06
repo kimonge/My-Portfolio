@@ -6,8 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector("nav");
   const navLinks = nav ? nav.querySelectorAll("a") : [];
   const darkModeToggle = document.getElementById("dark-mode-toggle");
-  const cvModal = document.getElementById("cv-modal");
-  const openCvModal = document.getElementById("open-cv-modal");
+  const cvModal = document.getElementById("cvModal");
+  const openCvBtn = document.getElementById("openCv");
+  const closeCvBtn = document.getElementById("closeCv");
+  const logoModal = document.getElementById("logoModal");
+  const openLogoBtn = document.getElementById("openLogo");
+  const closeLogoBtn = document.getElementById("closeLogo");
+  const toggleLogoSizeBtn = document.getElementById("toggleLogoSize");
 
   const isMobile = () => window.innerWidth <= 768;
 
@@ -134,26 +139,63 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -------------------- CV Modal --------------------
-  if (cvModal && openCvModal) {
-    const closeBtn = cvModal.querySelector(".modal-close");
+  if (cvModal && openCvBtn && closeCvBtn) {
     const openModal = () => {
-      cvModal.hidden = false;
+      cvModal.classList.add("is-open");
+      cvModal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     };
     const closeModal = () => {
-      cvModal.hidden = true;
+      cvModal.classList.remove("is-open");
+      cvModal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
     };
 
-    openCvModal.addEventListener("click", openModal);
-    closeBtn?.addEventListener("click", closeModal);
+    openCvBtn.addEventListener("click", openModal);
+    closeCvBtn.addEventListener("click", closeModal);
 
     cvModal.addEventListener("click", (e) => {
       if (e.target === cvModal) closeModal();
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !cvModal.hidden) closeModal();
+      if (e.key === "Escape" && cvModal.classList.contains("is-open")) closeModal();
+    });
+  }
+
+  // -------------------- Logo Modal --------------------
+  if (logoModal && openLogoBtn && closeLogoBtn && toggleLogoSizeBtn) {
+    const openModal = (e) => {
+      e?.preventDefault();
+      logoModal.classList.add("is-open");
+      logoModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      logoModal.classList.remove("is-open");
+      logoModal.setAttribute("aria-hidden", "true");
+      logoModal.classList.remove("is-large");
+      toggleLogoSizeBtn.setAttribute("aria-pressed", "false");
+      toggleLogoSizeBtn.textContent = "Enlarge";
+      document.body.style.overflow = "";
+    };
+
+    openLogoBtn.addEventListener("click", openModal);
+    closeLogoBtn.addEventListener("click", closeModal);
+
+    logoModal.addEventListener("click", (event) => {
+      if (event.target === logoModal) closeModal();
+    });
+
+    toggleLogoSizeBtn.addEventListener("click", () => {
+      const isLarge = logoModal.classList.toggle("is-large");
+      toggleLogoSizeBtn.setAttribute("aria-pressed", isLarge ? "true" : "false");
+      toggleLogoSizeBtn.textContent = isLarge ? "Smaller" : "Enlarge";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && logoModal.classList.contains("is-open")) closeModal();
     });
   }
 

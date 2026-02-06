@@ -15,11 +15,11 @@
   <!-- Header -->
   <header class="header-wrapper">
     <div class="header-inner">
-      <a href="index.html" class="logo-link">
+      <a href="index.html" id="openLogo" aria-haspopup="dialog">
         <img src="images/logo.jpg" alt="Brian Kimonge Dison Logo" class="logo">
       </a>
       <div class="title-block">
-        <h1>Brian Kimonge Dison</h1>
+        <h1><a href="index.html">Brian Kimonge Dison</a></h1>
         <p>ICT Graduate | Clerical & Industrial Engineering Support</p>
       </div>
 
@@ -44,11 +44,11 @@
 
     <!-- Hero Section -->
     <section id="hero">
-      <div class="hero-content">
+      <div>
         <h1>Hi, I'm Brian Kimonge Dison</h1>
         <p>ICT Graduate | Clerical & Industrial Engineering Support | Problem-Solver & Tech Enthusiast</p>
         <a href="#contact" class="btn btn-primary">Hire Me</a>
-        <button id="open-cv-modal" class="btn btn-secondary" type="button">Download CV</button>
+        <button id="openCv" class="btn btn-secondary" type="button">Download CV</button>
       </div>
     </section>
 
@@ -242,20 +242,21 @@
 
   <button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top">↑</button>
 
-  <div id="cv-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cv-modal-title" hidden>
-    <div class="modal-content">
-      <button class="modal-close" type="button" aria-label="Close dialog">×</button>
-      <h3 id="cv-modal-title">ICT CV</h3>
-      <div class="modal-frame">
-        <object data="PDFs/Brian_Kimonge_Dison_ICT_CV_2026.pdf" type="application/pdf" aria-label="ICT CV Preview">
-          <iframe src="PDFs/Brian_Kimonge_Dison_ICT_CV_2026.pdf" title="ICT CV Preview"></iframe>
-          <p>PDF preview not supported. <a href="PDFs/Brian_Kimonge_Dison_ICT_CV_2026.pdf" target="_blank"
-              rel="noopener noreferrer">Open the ICT CV</a>.</p>
-        </object>
+  <div class="modal" id="cvModal" aria-hidden="true" role="dialog" aria-label="Curriculum Vitae">
+    <div class="modal-content modal-content--cv" role="document">
+      <button class="modal-close" type="button" id="closeCv" aria-label="Close CV">X</button>
+      <iframe class="modal-frame" title="Brian Kimonge Dison CV"
+        src="PDFs/Brian_Kimonge_Dison_ICT_CV_2026.pdf"></iframe>
+    </div>
+  </div>
+
+  <div class="modal" id="logoModal" aria-hidden="true" role="dialog" aria-label="Logo preview">
+    <div class="modal-content modal-content--logo" role="document">
+      <div class="logo-modal-actions">
+        <button class="logo-toggle" type="button" id="toggleLogoSize" aria-pressed="false">Enlarge</button>
+        <button class="modal-close" type="button" id="closeLogo" aria-label="Close logo">Close</button>
       </div>
-      <div class="modal-actions">
-        <a href="PDFs/Brian_Kimonge_Dison_ICT_CV_2026.pdf" class="btn btn-primary" download>Download ICT CV</a>
-      </div>
+      <img class="logo-preview" id="logoPreview" src="images/logo.jpg" alt="Brian Kimonge Dison logo" />
     </div>
   </div>
 
@@ -263,3 +264,4 @@
 </body>
 
 </html>
+
