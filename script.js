@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector("nav");
   const navLinks = nav ? nav.querySelectorAll("a") : [];
   const darkModeToggle = document.getElementById("dark-mode-toggle");
+  const cvModal = document.getElementById("cv-modal");
+  const openCvModal = document.getElementById("open-cv-modal");
 
   const isMobile = () => window.innerWidth <= 768;
 
@@ -58,6 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const setDarkModeIcon = () => {
     if (!darkModeToggle) return;
     darkModeToggle.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    darkModeToggle.setAttribute(
+      "aria-pressed",
+      document.body.classList.contains("dark-mode") ? "true" : "false"
+    );
   };
 
   // Load saved preference
@@ -87,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // -------------------- Animate Progress Bars --------------------
   const progressBars = document.querySelectorAll(".progress-bar");
+  const scrollTopBtn = document.getElementById("scroll-top");
 
   if ("IntersectionObserver" in window && progressBars.length) {
     const observer = new IntersectionObserver(entries => {
@@ -105,6 +112,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.5 });
 
     progressBars.forEach(bar => observer.observe(bar));
+  }
+
+  // -------------------- Scroll To Top --------------------
+  if (scrollTopBtn) {
+    const toggleScrollTop = () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add("is-visible");
+      } else {
+        scrollTopBtn.classList.remove("is-visible");
+      }
+    };
+
+    toggleScrollTop();
+
+    window.addEventListener("scroll", toggleScrollTop);
+
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // -------------------- CV Modal --------------------
+  if (cvModal && openCvModal) {
+    const closeBtn = cvModal.querySelector(".modal-close");
+    const openModal = () => {
+      cvModal.hidden = false;
+      document.body.style.overflow = "hidden";
+    };
+    const closeModal = () => {
+      cvModal.hidden = true;
+      document.body.style.overflow = "";
+    };
+
+    openCvModal.addEventListener("click", openModal);
+    closeBtn?.addEventListener("click", closeModal);
+
+    cvModal.addEventListener("click", (e) => {
+      if (e.target === cvModal) closeModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !cvModal.hidden) closeModal();
+    });
   }
 
 });
