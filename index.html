@@ -56,7 +56,7 @@
     <section id="about">
       <h2>About Me</h2>
       <div class="about-text-wrapper">
-        <img src="images/profile.jpg" alt="Brian Kimonge Dison Photo" class="profile-photo">
+        <img src="images/profile.jpeg" alt="Brian Kimonge Dison Photo" class="profile-photo">
         <div class="about-text">
           <p>I am Brian Kimonge Dison, an ICT professional with strong skills in programming, systems support, and
             digital solutions development. My BSc in ICT equips me with expertise across multiple programming
@@ -182,6 +182,17 @@
       <div class="projects-container">
 
         <div class="project-card">
+          <img src="icons/portfolio1.png" alt="My Portfolio" class="project-icon">
+          <h3>My Portfolio</h3>
+          <p>A simple HTML/CSS/JS Portfolio hosted on GitHub PagesMy portfolio is a responsive web project built with
+            HTML, CSS, and JavaScript, hosted on GitHub. It features a contact section integrated with Google Forms for
+            easy communication and includes a downloadable CV for quick access to my professional background.</p>
+          <a href="https://kimonge.github.io/My-Portfolio/" class="btn btn-primary" target="_blank"
+            rel="noopener noreferrer">View Project</a>
+        </div>
+
+
+        <div class="project-card">
           <img src="icons/login.png" alt="Login System icon" class="project-icon">
           <h3>Login System</h3>
           <p>A simple HTML/CSS/JS login system hosted on GitHub Pages.</p>
@@ -190,11 +201,15 @@
         </div>
 
         <div class="project-card">
-          <img src="icons/dashboard.png" alt="Dashboard icon" class="project-icon">
-          <h3>Production Dashboard</h3>
-          <p>Excel & Python-based dashboard to track factory efficiency.</p>
-          <a href="https://github.com/kimonge/production-dashboard" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">View on GitHub</a>
+          <img src="icons/frams.png" alt="FACIAL RECOGNITION ATTENDANCE MANAGEMENT SYSTEM" class="project-icon">
+          <h3>FACIAL RECOGNITION ATTENDANCE MANAGEMENT SYSTEM</h3>
+          <p>Facial recognition attendance management is a web-based system that captures student images, matches them
+            with stored data, and records attendance in real time. It improves accuracy, efficiency, and
+            cost-effectiveness, eliminates manual records and forgery, minimizes errors, and provides instant attendance
+            reports.</p>
+          <a href="https://github.com/kimonge/FACIAL-RECOGNITION-ATTENDANCE-MANAGEMENT-SYSTEM" class="btn btn-primary"
+            target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            <button onclick="openPDF()">View PDF file for Presentation</button>
         </div>
 
       </div>
@@ -245,8 +260,7 @@
   <div class="modal" id="cvModal" aria-hidden="true" role="dialog" aria-label="Curriculum Vitae">
     <div class="modal-content modal-content--cv" role="document">
       <button class="modal-close" type="button" id="closeCv" aria-label="Close CV">X</button>
-      <iframe class="modal-frame" title="Brian Kimonge Dison CV"
-        src="PDFs/Brian_Kimonge_Dison_ICT_CV_2026.pdf"></iframe>
+      <iframe class="modal-frame" title="Brian Kimonge Dison CV" src="PDFs/Brian_Kimonge_Dison_CV.pdf"></iframe>
     </div>
   </div>
 
@@ -260,8 +274,12 @@
     </div>
   </div>
 
+  <script>
+    function openPDF() {
+      window.open('PDFs/FACIAL_RECOGNITION_ATTENDANCE_MANAGEMENT_SYSTEM.pdf', '_blank');
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 
 </html>
-
